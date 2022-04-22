@@ -7,12 +7,12 @@ public static class MediatrExtension
 {
     public static void AddMediatR(this IServiceCollection services)
     {
-        var appAssemblies = Assembly.GetEntryAssembly().GetReferencedAssemblies().ToList();
+        var appAssembliesList = Assembly.GetEntryAssembly().GetReferencedAssemblies().ToList();
         var res = new List<Assembly>();
 
-        appAssemblies.ForEach(assembly => res.Add(Assembly.Load(assembly)));
+        appAssembliesList.ForEach(assembly => res.Add(Assembly.Load(assembly)));
 
-        var requestHandlerTypes = GetTypes(res.ToArray(), typeof(IRequestHandler<,>));
+        var requestHandlerTypes = GetTypes(res, typeof(IRequestHandler<,>));
 
         services.AddScoped<IMediator, Mediator>();
         services.AddScoped<ServiceFactory>(p => p.GetService);
@@ -20,7 +20,7 @@ public static class MediatrExtension
         RegisterGenericTypes(services, typeof(IRequestHandler<,>), requestHandlerTypes);
     }
 
-    private static IEnumerable<TypeInfo> GetTypes(Assembly[] assemblies, Type genericType)
+    private static IEnumerable<TypeInfo> GetTypes(List<Assembly> assemblies, Type genericType)
     {
         return assemblies.SelectMany(a => a.DefinedTypes
             .Where(ti => !ti.IsAbstract && !ti.IsInterface && ti.GetInterfaces()
