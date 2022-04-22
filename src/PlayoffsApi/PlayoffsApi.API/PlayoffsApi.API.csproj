@@ -10,4 +10,9 @@
     <PackageReference Include="MediatR" Version="10.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PlayoffsApi.Application\PlayoffsApi.Application.csproj" />
+    <ProjectReference Include="..\PlayoffsApi.Infrastructure\PlayoffsApi.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
