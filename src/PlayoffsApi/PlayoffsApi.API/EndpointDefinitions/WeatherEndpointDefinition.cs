@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using PlayoffsApi.API.Configuration.Endpoints;
-using PlayoffsApi.Application.Weather.GetWeatherDetails;
+using PlayoffsApi.Application.Weathers.GetWeatherDetails;
 
 namespace PlayoffsApi.API.EndpointDefinitions;
 

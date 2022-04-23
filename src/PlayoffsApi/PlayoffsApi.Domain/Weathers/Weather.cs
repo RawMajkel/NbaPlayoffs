@@ -1,10 +1,11 @@
 ﻿using PlayoffsApi.Domain.SeedWork;
 
-namespace PlayoffsApi.Domain.Weather;
+namespace PlayoffsApi.Domain.Weathers;
 
 public class Weather : Entity, IAggregateRoot
 {
     public WeatherId Id { get; private set; }
+
     public DateTime Date { get; init; }
     public int TemperatureC { get; init; }
     public int TemperatureF { get; init; }

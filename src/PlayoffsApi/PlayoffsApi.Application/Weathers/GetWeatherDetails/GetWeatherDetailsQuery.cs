@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using PlayoffsApi.Application.Configuration.Queries;
 
-namespace PlayoffsApi.Application.Weather.GetWeatherDetails;
+namespace PlayoffsApi.Application.Weathers.GetWeatherDetails;
 
 public class GetWeatherDetailsQuery : IQuery<List<WeatherDetailsDto>>
 {
