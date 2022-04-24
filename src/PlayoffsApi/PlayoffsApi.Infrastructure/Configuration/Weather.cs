@@ -23,7 +23,7 @@ public class WeatherBuilder : IEntityTypeConfiguration<Weather>
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        var weather = Enumerable.Range(1, 10).Select(index => new Weather
+        var weather = Enumerable.Range(1, 1000).Select(index => new Weather
         (
             DateTime.Now.AddDays(index),
             Random.Shared.Next(-20, 55),
