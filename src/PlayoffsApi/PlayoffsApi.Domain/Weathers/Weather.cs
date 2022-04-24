@@ -2,9 +2,9 @@
 
 namespace PlayoffsApi.Domain.Weathers;
 
-public class Weather : IAggregateRoot
+public class Weather : Entity, IAggregateRoot
 {
-    public WeatherId Id { get; init; }
+    public WeatherId Id { get; private set; }
 
     public DateTime Date { get; init; }
     public int TemperatureC { get; init; }
