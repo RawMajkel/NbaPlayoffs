@@ -12,7 +12,7 @@
     "PlayoffsApi.Application": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "weather/dapper",
       "applicationUrl": "https://localhost:7129;http://localhost:5129",
       "environmentVariables": {
@@ -21,7 +21,7 @@
     },
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "weather/dapper",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

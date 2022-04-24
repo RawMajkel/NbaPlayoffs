@@ -19,4 +19,7 @@ public class WeatherDetailsDto
             TemperatureF = weather.TemperatureF,
             Summary = weather.Summary
         };
+
+    public static List<WeatherDetailsDto> Map(IEnumerable<Weather> weather)
+        => weather.Select(w => Map(w)).ToList();
 }

@@ -2,7 +2,7 @@
 
 public interface IWeatherRepository
 {
-    Task<Weather?> GetWeatherById(Guid id);
-
     IEnumerable<Weather> GetWeather();
+
+    IQueryable<Weather> GetAsQueryable();
 }

@@ -10,9 +10,9 @@ public class WeatherRepository : IWeatherRepository
     public WeatherRepository(ApplicationDbContext context)
         => _context = context;
 
-    public async Task<Weather?> GetWeatherById(Guid id)
-        => await _context.Weather.FirstOrDefaultAsync(x => x.Id.Value == id);
-
     public IEnumerable<Weather> GetWeather()
         => _context.Weather.AsEnumerable();
+
+    public IQueryable<Weather> GetAsQueryable()
+        => _context.Weather;
 }

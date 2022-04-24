@@ -3,7 +3,7 @@
 namespace PlayoffsApi.Tests;
 
 [MemoryDiagnoser]
-public class DapperVsEfBenchmark
+public class DapperVsEfVsGqlBenchmark
 {
     [Benchmark]
     public async Task SelectDapper()
@@ -15,7 +15,7 @@ public class DapperVsEfBenchmark
             var response = await client.GetAsync("https://localhost:7129/weather/dapper");
 
             response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
+            //string responseBody = await response.Content.ReadAsStringAsync();
         }
         catch (HttpRequestException e)
         {
@@ -34,7 +34,26 @@ public class DapperVsEfBenchmark
             var response = await client.GetAsync("https://localhost:7129/weather/ef");
 
             response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
+            //string responseBody = await response.Content.ReadAsStringAsync();
+        }
+        catch (HttpRequestException e)
+        {
+            //Console.WriteLine("\nException Caught!");
+            //Console.WriteLine("Message :{0} ", e.Message);
+        }
+    }
+
+    [Benchmark]
+    public async Task SelectGraphQL()
+    {
+        var client = new HttpClient();
+
+        try
+        {
+            var response = await client.GetAsync("https://localhost:7129/graphql?query={weather{id,date,temperatureC,temperatureF,summary}}");
+
+            response.EnsureSuccessStatusCode();
+            //string responseBody = await response.Content.ReadAsStringAsync();
         }
         catch (HttpRequestException e)
         {
