@@ -15,4 +15,7 @@ public class WeatherRepository : IWeatherRepository
 
     public IQueryable<Weather> GetAsQueryable()
         => _context.Weather;
+
+    public IEnumerable<Weather> GetFromRawSql(string sql)
+        => _context.Weather.FromSqlRaw(sql).AsEnumerable();
 }
