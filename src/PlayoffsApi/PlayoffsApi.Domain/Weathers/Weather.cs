@@ -11,6 +11,10 @@ public class Weather : Entity, IAggregateRoot
     public int TemperatureF { get; init; }
     public string? Summary { get; init; }
 
+    private Weather()
+    {
+    }
+
     public Weather(DateTime date, int temperatureC, string? summary)
     {
         Id = new WeatherId(Guid.NewGuid());

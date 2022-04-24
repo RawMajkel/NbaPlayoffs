@@ -1,13 +1,14 @@
 ﻿using PlayoffsApi.Application.Configuration.Queries;
 using PlayoffsApi.Domain.Weathers;
+using System.Data;
 
 namespace PlayoffsApi.Application.Weathers.GetWeatherDetails;
 
-internal sealed class GetWeatherDetailsQueryHandler : IQueryHandler<GetWeatherDetailsQuery, List<WeatherDetailsDto>>
+internal sealed class GetWeatherDetailsHandler : IQueryHandler<GetWeatherDetailsQuery, List<WeatherDetailsDto>>
 {
     private readonly IWeatherRepository _weatherRepository;
 
-    public GetWeatherDetailsQueryHandler(IWeatherRepository weatherRepository)
+    public GetWeatherDetailsHandler(IWeatherRepository weatherRepository)
     {
         _weatherRepository = weatherRepository;
     }
