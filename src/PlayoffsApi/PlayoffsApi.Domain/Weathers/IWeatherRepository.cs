@@ -2,9 +2,11 @@
 
 public interface IWeatherRepository
 {
-    IEnumerable<Weather> GetWeather();
-
     IQueryable<Weather> GetAsQueryable();
 
-    IEnumerable<Weather> GetFromRawSql(string sql);
+    int FindNextId();
+
+    Task AddAsync(Weather weather);
+
+    Task SaveChangesAsync();
 }

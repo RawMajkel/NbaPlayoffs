@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PlayoffsApi.Domain.Weathers;
+﻿using PlayoffsApi.Domain.Weathers;
 
 namespace PlayoffsApi.Infrastructure.Domain.Weathers;
 
@@ -8,14 +7,22 @@ public class WeatherRepository : IWeatherRepository
     private readonly ApplicationDbContext _context;
 
     public WeatherRepository(ApplicationDbContext context)
-        => _context = context;
-
-    public IEnumerable<Weather> GetWeather()
-        => _context.Weather.AsEnumerable();
+        => _context = context ?? throw new ArgumentNullException(nameof(context));
 
     public IQueryable<Weather> GetAsQueryable()
         => _context.Weather;
 
-    public IEnumerable<Weather> GetFromRawSql(string sql)
-        => _context.Weather.FromSqlRaw(sql).AsEnumerable();
+    public async Task AddAsync(Weather weather)
+        => await _context.Weather.AddAsync(weather);
+
+    public async Task SaveChangesAsync()
+        => await _context.SaveChangesAsync();
+
+    public int FindNextId()
+    {
+        var test = _context.Weather.OrderByDescending(x => x.Id).FirstOrDefault();
+        var key = test?.Id.Value;
+
+        return key.Value + 1;
+    }
 }

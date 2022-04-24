@@ -4,7 +4,7 @@ namespace PlayoffsApi.Domain.Weathers;
 
 public class WeatherId : TypedIdValueBase
 {
-    public WeatherId(Guid value) : base(value)
+    public WeatherId(int value) : base(value)
     {
     }
 }

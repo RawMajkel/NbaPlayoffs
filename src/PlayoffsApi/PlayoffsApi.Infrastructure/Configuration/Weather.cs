@@ -11,7 +11,8 @@ public class WeatherBuilder : IEntityTypeConfiguration<Weather>
     {
         builder
             .Property(w => w.Id)
-            .HasConversion(new ValueConverter<WeatherId, Guid>(w => w.Value, g => new WeatherId(g)));
+            .HasConversion(new ValueConverter<WeatherId, int>(w => w.Value, g => new WeatherId(g)))
+            .HasIdentityOptions(startValue: 100);
 
         builder.HasData(GetBogusWeatherData());
     }
@@ -23,8 +24,9 @@ public class WeatherBuilder : IEntityTypeConfiguration<Weather>
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        var weather = Enumerable.Range(1, 1000).Select(index => new Weather
+        var weather = Enumerable.Range(1, 50).Select(index => new Weather
         (
+            index,
             DateTime.Now.AddDays(index),
             Random.Shared.Next(-20, 55),
             summaries[Random.Shared.Next(summaries.Length)]

@@ -1,9 +1,11 @@
-using PlayoffsApi.API.Configuration.Endpoints;
 using PlayoffsApi.API.Configuration;
+using PlayoffsApi.API.Configuration.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var hashIdSalt = builder.Configuration.GetSection("HashSalt").Value;
 
+builder.Services.AddHashIds(hashIdSalt);
 builder.Services.AddPostgreSQL(connectionString);
 builder.Services.AddMediatR();
 builder.Services.AddAutoMapper();

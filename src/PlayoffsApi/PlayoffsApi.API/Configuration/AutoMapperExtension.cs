@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HashidsNet;
 using PlayoffsApi.Application.Weathers.Query;
 
 namespace PlayoffsApi.API.Configuration;
@@ -7,12 +8,10 @@ public static class AutoMapperExtension
 {
     public static void AddAutoMapper(this IServiceCollection services)
     {
-        var mapperConfig = new MapperConfiguration(cfg =>
+        services.AddSingleton(provider => new MapperConfiguration(cfg =>
         {
-            cfg.AddProfile<WeatherProfile>();
-        });
-
-        var mapper = mapperConfig.CreateMapper();
-        services.AddSingleton(mapper);
+            cfg.AddProfile(new WeatherProfile(provider.GetService<IHashids>()));
+        })
+        .CreateMapper());
     }
 }

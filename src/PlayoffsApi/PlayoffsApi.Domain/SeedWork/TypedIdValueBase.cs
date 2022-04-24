@@ -2,9 +2,9 @@
 
 public abstract class TypedIdValueBase : IEquatable<TypedIdValueBase>
 {
-    public Guid Value { get; }
+    public int Value { get; }
 
-    protected TypedIdValueBase(Guid value)
+    protected TypedIdValueBase(int value)
     {
         Value = value;
     }
