@@ -1,5 +1,4 @@
-﻿using PlayoffsApi.Application.Weathers;
-using PlayoffsApi.Domain.Weathers;
+﻿using PlayoffsApi.Application.Weathers.Query;
 
 namespace PlayoffsApi.API.Configuration;
 
@@ -9,11 +8,7 @@ public static class GraphQLExtension
     {
         services
             .AddGraphQLServer()
-            .AddTypeConverter<WeatherId, Guid>(w => w.Value)
-            .BindRuntimeType<WeatherId, UuidType>()
-            .AddQueryType<WeatherQuery>(wq => wq.Name("WeatherQuery"))
+            .AddQueryType<WeatherQuery>()
             .AddProjections();
-        //.AddFiltering()
-        //.AddSorting();
     }
 }

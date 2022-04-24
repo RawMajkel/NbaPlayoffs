@@ -9,6 +9,7 @@ builder.Services.AddPostgreSQL(connectionString);
 builder.Services.AddMediatR();
 builder.Services.AddEndpointDefinitions(typeof(IEndpointDefinition));
 builder.Services.AddGraphQL();
+builder.Services.AddAutoMapper();
 
 var app = builder.Build();
 

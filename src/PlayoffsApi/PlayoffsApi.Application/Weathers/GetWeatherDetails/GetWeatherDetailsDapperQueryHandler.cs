@@ -1,10 +1,11 @@
 ﻿using Dapper;
 using PlayoffsApi.Application.Configuration.Queries;
+using PlayoffsApi.Application.Weathers.Query;
 using System.Data;
 
 namespace PlayoffsApi.Application.Weathers.GetWeatherDetails;
 
-internal sealed class GetWeatherDetailsDapperQueryHandler : IQueryHandler<GetWeatherDetailsDapperQuery, List<WeatherDetailsDto>>
+internal sealed class GetWeatherDetailsDapperQueryHandler : IQueryHandler<GetWeatherDetailsDapperQuery, List<WeatherDto>>
 {
     private readonly IDbConnection _dbConnection;
 
@@ -13,7 +14,7 @@ internal sealed class GetWeatherDetailsDapperQueryHandler : IQueryHandler<GetWea
         _dbConnection = dbConnection;
     }
 
-    public async Task<List<WeatherDetailsDto>> Handle(GetWeatherDetailsDapperQuery request, CancellationToken cancellationToken)
+    public async Task<List<WeatherDto>> Handle(GetWeatherDetailsDapperQuery request, CancellationToken cancellationToken)
     {
         const string sql = "SELECT " +
                    "\"Id\", " +
@@ -23,7 +24,7 @@ internal sealed class GetWeatherDetailsDapperQueryHandler : IQueryHandler<GetWea
                    "\"Summary\" " +
                    "FROM public.\"Weather\";";
 
-        var weather = await _dbConnection.QueryAsync<WeatherDetailsDto>(sql);
+        var weather = await _dbConnection.QueryAsync<WeatherDto>(sql);
         return weather.ToList();
     }
 }
