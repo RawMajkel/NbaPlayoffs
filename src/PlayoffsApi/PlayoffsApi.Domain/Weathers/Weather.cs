@@ -19,9 +19,9 @@ public class Weather : Entity, IAggregateRoot
     {
     }
 
-    public Weather(DateTime date, int temperatureC, string summary, int index = 0)
+    public Weather(DateTime date, int temperatureC, string summary, int id = 0)
     {
-        Id = new WeatherId(index);
+        Id = new WeatherId(id);
         Date = date;
         TemperatureC = temperatureC;
         TemperatureF = 32 + (int)(TemperatureC / 0.5556);
