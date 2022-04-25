@@ -17,8 +17,7 @@ public class RegisterWeatherCommandHandler : IRequestHandler<RegisterWeatherComm
 
     public async Task<WeatherDto> Handle(RegisterWeatherCommand request, CancellationToken cancellationToken)
     {
-        var nextId = _weatherRepository.FindNextId();
-        var weather = Weather.CreateRegistered(nextId, request.Date, request.TemperatureC, request.Summary);
+        var weather = Weather.CreateRegistered(request.Date, request.TemperatureC, request.Summary);
 
         await _weatherRepository.AddAsync(weather);
         await _weatherRepository.SaveChangesAsync();

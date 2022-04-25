@@ -17,12 +17,4 @@ public class WeatherRepository : IWeatherRepository
 
     public async Task SaveChangesAsync()
         => await _context.SaveChangesAsync();
-
-    public int FindNextId()
-    {
-        var test = _context.Weather.OrderByDescending(x => x.Id).FirstOrDefault();
-        var key = test?.Id.Value;
-
-        return key.Value + 1;
-    }
 }
