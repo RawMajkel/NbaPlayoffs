@@ -1,10 +1,7 @@
-﻿using PlayoffsApi.Domain.SeedWork;
+﻿using ValueOf;
 
 namespace PlayoffsApi.Domain.Weathers;
 
-public class WeatherId : TypedIdValueBase
+public class WeatherId : ValueOf<int, WeatherId>
 {
-    public WeatherId(int value) : base(value)
-    {
-    }
 }
